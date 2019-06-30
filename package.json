@@ -1,0 +1,31 @@
+{
+  "name": "yjs-website",
+  "version": "0.0.0",
+  "description": "Yjs website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Yjs"
+  ],
+  "author": "kevin.jahns@protonmail.com",
+  "license": "MIT",
+  "dependencies": {
+    "lib0": "0.0.5",
+    "rollup": "^1.16.2",
+    "rollup-plugin-commonjs": "^10.0.1",
+    "rollup-plugin-jsx": "^1.0.3",
+    "rollup-plugin-node-resolve": "^5.1.0",
+    "y-prosemirror": "0.0.6",
+    "y-websocket": "^1.0.0-5",
+    "yjs": "^13.0.0-94"
+  },
+  "devDependencies": {
+    "codemirror": "^5.48.0",
+    "lit-html": "^1.1.0",
+    "prosemirror-example-setup": "^1.0.1",
+    "prosemirror-state": "^1.2.3",
+    "prosemirror-view": "^1.9.10"
+  }
+}
