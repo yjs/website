@@ -39,7 +39,7 @@ shared.provider.awareness.setLocalState({
 })
 
 document.documentElement.style.setProperty('--user-color', userColor.color);
-document.documentElement.style.setProperty('--user-light', userColor.light);
+document.documentElement.style.setProperty('--user-color-light', userColor.light);
 
 
 /* mouse renderer */
@@ -61,7 +61,7 @@ const renderCursors = () => {
   const infoRect = elements.intro.getBoundingClientRect()
   const cursors = Array.from(shared.awareness.getStates().entries())
     .filter(([userid, state]) => userid !== shared.doc.clientID && state.introMouse != null)
-    .map(([userid, state]) => html`<div style="background-color:${state.color};top:${math.floor(state.introMouse.y * infoRect.height)}px;left:${math.floor(state.introMouse.x * infoRect.width)}px"></div>`)
+    .map(([userid, state]) => html`<div style="background-color:${state.color};transform:translate(${math.floor(state.introMouse.x * infoRect.width)}px, ${math.floor(state.introMouse.y * infoRect.height)}px)"></div>`)
   render(html`${cursors}`, elements.introCursors)
 }
 

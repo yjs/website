@@ -7,6 +7,17 @@
   <script src="./dist/index.js" async></script>
 </head>
 <body>
+  <!--
+    A fake / hidden checkbox is used as click reciever,
+    so you can use the :checked selector on it.
+    -->
+  <input id="hamburger-checkbox" type="checkbox" />
+  <div id="hamburger-background"></div>
+  <div id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
   <nav>
     <div>
       <ul class="nav-internal">
@@ -33,8 +44,8 @@
     </div>
     <div id="features">
       <p>
-          Yjs exposes <span class="highlight">Shared Types</span> that can
-          be manipulated like any other data type, but can be synced automatically!
+          Yjs is a shared editing framework. It exposes <span class="highlight">Shared Types</span> that can
+          be manipulated like any other data type. But they are synced automatically!
       </p>
       <textarea id="features-typedemo" spellcheck="false">
 const ymap = new Y.Map()

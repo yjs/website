@@ -10,6 +10,9 @@
   --theme-blue-light: #30bced33;
   --theme-yellow: #ecd444;
   --theme-highlight: #ee6352;
+  --theme-highlight-light: #f38d80;
+  --theme-highlight-complementary: #52ddee;
+  --theme-highlight-light-complementary: #80e6f3;
   --golden-ratio: 38.19660vw;
   --golden-ratio-2: 19.0983vw;
   --golden-ratio-4: 9.54915vw;
@@ -17,8 +20,10 @@
   --background-color: white;
   --navwidth: var(--golden-ratio-2);
   --scrollbar-width: 17px;
-  --userlist-width: calc(var(--golden-ratio-4) - var(--scrollbar-width));
+  --userlist-width: var(--golden-ratio-4);
   --main-width: calc(100vw - var(--userlist-width) - var(--navwidth) - var(--scrollbar-width));
+  --hamburger-height: 6rem;
+  --hamburger-transition-time: .6s;
 }
 
 body {
@@ -32,7 +37,8 @@ body {
   scroll-snap-type: y proximity;
   height: 100vh;
   position: relative;
-  overflow: auto;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 body, input, select, textarea{
@@ -60,6 +66,20 @@ a:active, a.active {
   font-weight: bold;
 }
 
+
+
+main {
+  width: var(--main-width);
+  margin-right: var(--userlist-width);
+  margin-left: var(--navwidth);
+}
+
+main > div {
+  min-height: 100vh;
+  position: relative;
+  scroll-snap-align: start;
+}
+
 nav {
   width: var(--navwidth);
   display: flex;
@@ -70,6 +90,153 @@ nav {
   left: 0;
   top: 0;
   bottom: 0;
+  z-index: 2;
+}
+
+#hamburger {
+  display: none;
+}
+
+#hamburger-checkbox {
+  display: none;
+}
+
+#hamburger-background {
+  display: none;
+}
+
+@media (max-aspect-ratio: 1/1) {
+  /* Show hamburger menu */
+
+  #hamburger-checkbox {
+    display: block;
+  }
+
+  #hamburger-background {
+    display: block;
+    position: fixed;
+    top: -6rem;
+    left: -6rem;
+    width: 12rem;
+    height: 12rem;
+    border-radius: 50%;
+    background-color: var(--theme-highlight);
+    z-index: 2;
+    transition: all var(--hamburger-transition-time);
+  }
+
+  #hamburger-checkbox:checked ~ #hamburger-background {
+    height: 300vh;
+    width: 300vw;
+    left: -260vw;
+    top: -100vh;
+    background-color: var(--theme-highlight-light-complementary);
+  }
+
+  #hamburger-checkbox {
+    position: fixed;
+    display: block;
+    left: 0;
+    top: 0;
+    width: 5rem;
+    height: 5rem;
+    cursor: pointer;
+    opacity: 0; /* hide this */
+    z-index: 3; /* and place it over the hamburger */
+  }
+
+  #hamburger {
+    display: block;
+    position: fixed;
+    top: 1.3rem;
+    left: 1rem;
+    z-index: 2;
+  }
+
+  /*
+  * Just a quick hamburger
+  */
+  #hamburger > span {
+    display: block;
+    width: 3rem;
+    height: .4rem;
+    margin-bottom: .4rem;
+    position: relative;
+    
+    background: var(--background-color);
+    border-radius: .3rem;
+    
+    z-index: 2;
+    overflow: hidden;
+
+    transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+                background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+                opacity 0.55s ease;
+  }
+
+  #hamburger > span:nth-child(1) {
+    transform-origin: top left;
+  }
+
+  #hamburger > span:nth-child(3) {
+    transform-origin: bottom left;
+  }
+
+  /* 
+  * Transform all the slices of hamburger
+  * into a crossmark.
+  */
+  #hamburger-checkbox:checked ~ #hamburger > span {
+    opacity: 1;
+    background: #232323;
+  }
+
+  /*
+  * But let's hide the middle one.
+  */
+  #hamburger-checkbox:checked ~ #hamburger > span:nth-child(1) {
+    transform: rotate(45deg) translate(.4rem, -.3rem)
+  }
+
+  /*
+  * But let's hide the middle one.
+  */
+  #hamburger-checkbox:checked ~ #hamburger > span:nth-child(2) {
+    opacity: 0;
+    transform: rotate(0deg) scale(0.2, 0.2);
+  }
+
+  /*
+  * Ohyeah and the last one should go the other direction
+  */
+  #hamburger-checkbox:checked ~ #hamburger > span:nth-child(3) {
+    transform: rotate(-45deg) translate(0, .7rem)
+  }
+
+  nav {
+    width: 12rem;
+    transform: translateX(-24rem);
+    transition: transform var(--hamburger-transition-time);
+    font-size: 1.2rem;
+  }
+
+  #hamburger-checkbox:checked ~ nav {
+    transform: translateX(0);
+  }
+
+  /* More space after each section, so you can see the headline */
+
+  main > div {
+    padding-top: var(--hamburger-height);
+  }
+
+  .ProseMirror-menubar[style*="fixed"] {
+    padding-left: var(--hamburger-height);
+  }
+
+  main > div {
+    min-height: calc(100vh - var(--hamburger-height) - 3rem);
+  }
 }
 
 nav a {
@@ -99,18 +266,6 @@ nav > div > ul {
   padding-left: .3rem;
 }
 
-main {
-  width: var(--main-width);
-  margin-right: var(--userlist-width);
-  margin-left: var(--navwidth);
-}
-
-main > div {
-  min-height: 100vh;
-  position: relative;
-  scroll-snap-align: start;
-}
-
 #userlist {
   padding-top: 2rem;
   padding-left: -2rem;
@@ -120,6 +275,7 @@ main > div {
   bottom: 0;
   width: var(--userlist-width);
   overflow-wrap: break-word;
+  font-size: .8rem;
 }
 
 #userlist > div {
@@ -139,10 +295,12 @@ main > div {
   font-weight: bold;
 }
 
+/*
 #userlist > div[y-islocaluser="true"] > div::after {
   content: ' (you)';
-  font-size: .9rem;
+  font-size: 6.rem;
 }
+*/
 
 #intro {
   background: url('/images/logo/yjs.svg') no-repeat center/14rem;
@@ -155,12 +313,19 @@ main > div {
   left: 0;
 }
 
+
+@media (max-aspect-ratio: 1/1) {
+  #intro-name {
+    top: calc(50vh - 17rem)
+  }
+}
+
 #intro-name input {
   background-color: #fff0;
   font-size: 2rem;
   padding-left: .2rem;
   border: none;
-  border-bottom: 1px solid var(--user-color);
+  border-bottom: .1rem solid var(--user-color);
   outline: none;
   width: 14rem;
 }
@@ -171,10 +336,13 @@ main > div {
 
 #intro-cursors > div {
   position: absolute;
+  top: 0;
+  left: 0;
   margin: -.4rem;
   padding: .4rem;
   border-radius: 50%;
   border: .05rem solid var(--background-color);
+  transition: transform 60ms;
 }
 
 #features {
@@ -210,11 +378,7 @@ main > div {
 
 #features-items > * {
   margin: 1rem;
-}
-
-#shared-editing {
-  padding-top: 2rem;
-  padding-right: var(--golden-ratio-2); /* make sure user list is visible */
+  max-height: 19rem;
 }
 
 #editor, #editor .ProseMirror[contenteditable] {
@@ -297,6 +461,10 @@ main > div {
   height: p
 }
 
+html {
+  font-size: 1.1vw;
+}
+
 @media (max-aspect-ratio: 1/1) {
   html {
     font-size: 3vw;
@@ -306,13 +474,17 @@ main > div {
   }
   main {
     margin: 0;
-    padding: 1em;
-    width: calc(100vw - var(--scrollbar-width));
-  }
-  nav {
-    display: none;
+    padding: 1rem;
+    width: calc(100vw - var(--scrollbar-width) - 2rem);
   }
   #userlist {
     display: none;
+  }
+}
+
+
+@media (min-width: 1000px) {
+  html {
+    font-size: 11 px; /* consider rem size break */
   }
 }

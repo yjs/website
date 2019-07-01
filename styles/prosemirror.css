@@ -246,10 +246,11 @@ li.ProseMirror-selectednode:after {
   top: 0; left: 0; right: 0;
   border-bottom: 1px solid silver;
   background: white;
-  z-index: 10;
+  z-index: 1;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   overflow: visible;
+  min-height: auto !important;
 }
 
 .ProseMirror-icon {
