@@ -134,13 +134,13 @@ li.ProseMirror-selectednode:after {
 }
 
 .ProseMirror-menuitem {
-  margin-right: 3px;
+  margin-right: .5rem;
   display: inline-block;
 }
 
 .ProseMirror-menuseparator {
-  border-right: 1px solid #ddd;
-  margin-right: 3px;
+  border-right: .05rem solid #ddd;
+  margin-right: .5rem;
 }
 
 .ProseMirror-menu-dropdown, .ProseMirror-menu-dropdown-menu {
@@ -149,10 +149,10 @@ li.ProseMirror-selectednode:after {
 }
 
 .ProseMirror-menu-dropdown {
-  vertical-align: 1px;
+  vertical-align: .1rem;
   cursor: pointer;
   position: relative;
-  padding-right: 15px;
+  padding-right: 1rem;
 }
 
 .ProseMirror-menu-dropdown-wrap {
@@ -256,7 +256,7 @@ li.ProseMirror-selectednode:after {
 .ProseMirror-icon {
   display: inline-block;
   line-height: .8;
-  vertical-align: -2px; /* Compensate for padding */
+  vertical-align: -5px; /* Compensate for padding */
   padding: 2px 8px;
   cursor: pointer;
 }
