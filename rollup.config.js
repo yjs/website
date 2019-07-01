@@ -1,6 +1,6 @@
 import nodeResolve from 'rollup-plugin-node-resolve'
 import commonjs from 'rollup-plugin-commonjs'
-import jsx from 'rollup-plugin-jsx'
+import { terser } from 'rollup-plugin-terser'
 
 const localImports = process.env.LOCALIMPORTS
 
