@@ -105,7 +105,7 @@ nav {
   display: none;
 }
 
-@media (max-aspect-ratio: 1/1) {
+@media (max-aspect-ratio: 1/1), (orientation: portrait) {
   /* Show hamburger menu */
 
   #hamburger-checkbox {
@@ -313,10 +313,10 @@ nav > div > ul {
   left: 0;
 }
 
-
-@media (max-aspect-ratio: 1/1) {
+@media (max-aspect-ratio: 1/1), (orientation: portrait) {
   #intro-name {
-    top: calc(50vh - 17rem)
+    top: calc(50% - 15rem);
+    left: calc(var(--hamburger-height));
   }
 }
 
@@ -370,7 +370,7 @@ nav > div > ul {
   margin: 1rem -1rem var(--golden-ratio-4) -1rem;
 }
 
-@media (max-aspect-ratio: 1/1) {
+@media (max-aspect-ratio: 1/1), (orientation: portrait) {
   #features-items {
     flex: 1;
   }
@@ -465,7 +465,7 @@ html {
   font-size: 1.1vw;
 }
 
-@media (max-aspect-ratio: 1/1) {
+@media (max-aspect-ratio: 1/1), (orientation: portrait) {
   html {
     font-size: 3vw;
   }
