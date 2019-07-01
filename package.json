@@ -4,8 +4,8 @@
   "description": "Yjs website",
   "main": "index.js",
   "scripts": {
-    "build": "rollup -c",
-    "build:production": "PRODUCTION=1 rollup -c",
+    "dist": "rollup -c",
+    "dist:production": "PRODUCTION=1 rollup -c",
     "start": "concurrently 'rollup -wc' 'live-server .' 'node server.js'"
   },
   "keywords": [
