@@ -8,6 +8,8 @@ import * as math from 'lib0/math.js'
 
 const mainContainer = find('main')
 
+const scrollingElement = document.scrollingElement || document.documentElement
+
 /**
  * @type {Element}
  */
@@ -55,17 +57,15 @@ addEventListener('hashchange', () => {
   }
 })
 
-
 // update location.hash
 setInterval(() => {
   if (!document.hasFocus()) {
     lastScrollUpdate = time.getUnixTime()
   }
-  if (time.getUnixTime() - lastScrollUpdate > 700 && location.hash.length > 0 && (activeSection.getAttribute('id') || '').length > 0 && activeSection.getAttribute('id') !== location.hash.slice(1) && document.hasFocus()) {
+  if (time.getUnixTime() - lastScrollUpdate > 150 && location.hash.length > 0 && (activeSection.getAttribute('id') || '').length > 0 && activeSection.getAttribute('id') !== location.hash.slice(1) && document.hasFocus()) {
+    const scroll = scrollingElement.scrollTop
     location.hash = '#' + activeSection.getAttribute('id')
+    scrollingElement.scrollTop = scroll
     localStorage.setItem('location', /** @type {string} */ (activeSection.getAttribute('id')))
   }
-}, 700)
-
-// @ts-ignore
-;(mainContainer.style || {}).scrollBehavior = 'smooth'
+}, 150)

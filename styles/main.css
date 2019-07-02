@@ -33,12 +33,12 @@ body {
   padding: 0;
   margin: 0;
   display: flex;
+}
+
+html, body {
+  overflow: auto;
   scroll-behavior: smooth;
   scroll-snap-type: y proximity;
-  height: 100vh;
-  position: relative;
-  overflow-y: scroll;
-  overflow-x: hidden;
 }
 
 body, input, select, textarea{
@@ -66,7 +66,9 @@ a:active, a.active {
   font-weight: bold;
 }
 
-
+h1, h2, h3, h4, h5 {
+  color: #440;
+}
 
 main {
   width: var(--main-width);
@@ -130,7 +132,7 @@ nav {
     width: 300vw;
     left: -260vw;
     top: -100vh;
-    background-color: var(--theme-highlight-light-complementary);
+    background-color: #DAFFFF;
   }
 
   #hamburger-checkbox {
@@ -416,19 +418,19 @@ nav > div > ul {
 }
 
 #features .box-container:nth-of-type(2) {
-  background-color: var(--theme-green-light);
-}
-
-#features .box-container:nth-of-type(2) > h5 {
-  background-color: var(--theme-green);
-}
-
-#features .box-container:nth-of-type(3) {
   background-color: var(--theme-blue-light);
 }
 
-#features .box-container:nth-of-type(3) > h5 {
+#features .box-container:nth-of-type(2) > h5 {
   background-color: var(--theme-blue);
+}
+
+#features .box-container:nth-of-type(3) {
+  background-color: var(--theme-green-light);
+}
+
+#features .box-container:nth-of-type(3) > h5 {
+  background-color: var(--theme-green);
 }
 
 #community img {
@@ -447,7 +449,6 @@ nav > div > ul {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
   background-color: var(--theme-blue);
-  color: #fefefe;
   margin: 0;
   line-height: 2rem;
   font-size: 1.25rem;
