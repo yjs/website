@@ -11,6 +11,7 @@
   --theme-yellow: #ecd444;
   --theme-highlight: #ee6352;
   --theme-highlight-light: #f38d80;
+  --theme-highlight-dark: #d12915;
   --theme-highlight-complementary: #52ddee;
   --theme-highlight-light-complementary: #80e6f3;
   --golden-ratio: 38.19660vw;
@@ -53,21 +54,16 @@ a {
 }
 
 a:hover {
-  color: var(--theme-highlight);
+  color: var(--theme-highlight-dark);
 }
 
-.highlight {
-  color: var(--theme-highlight);
-  font-weight: bold;
-}
-
-a:active, a.active {
-  color: var(--theme-highlight);
+.highlight, a:active, a.active {
+  color: var(--theme-highlight-dark);
   font-weight: bold;
 }
 
 h1, h2, h3, h4, h5 {
-  color: #440;
+  color: #313131;
 }
 
 main {
