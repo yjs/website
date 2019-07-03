@@ -1,3 +1,4 @@
+import * as random from 'lib0/random.js'
 
 export const usercolors = [
   { color: '#30bced', light: '#30bced33' },
@@ -10,3 +11,5 @@ export const usercolors = [
   { color: '#8acb88', light: '#8acb8833' },
   { color: '#1be7ff', light: '#1be7ff33' }
 ]
+
+export const userColor = usercolors[random.uint32() % usercolors.length]

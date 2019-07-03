@@ -25,6 +25,7 @@
         <li><a href="#intro">Overview</a></li>
         <li><a href="#features">Features</a></li>
         <li><a href="#shared-editing">Shared Editing</a></li>
+        <li><a href="#drawing">Drawing</a></li>
         <li><a href="#community">Community</a></li>
       </ul>
       <ul class="nav-external">
@@ -86,6 +87,30 @@ ytext.observe(event => { console.log('The shared text has changed') })
     <div id="shared-editing">
       <h2>Shared Editing Demo</h2>
       <div id="editor"></div>
+    </div>
+    <div id="drawing">
+      <h2>Drawing</h2>
+      <div id="drawing-area">
+        <input id="drawing-menubar-checkbox" type="checkbox">
+        <div id="drawing-menubar">
+          <div id="drawing-menubar-action-close">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512"><path d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"/></svg>
+          </div>
+          <div id="drawing-menubar-action-color">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M204.3 5C104.9 24.4 24.8 104.3 5.2 203.4c-37 187 131.7 326.4 258.8 306.7 41.2-6.4 61.4-54.6 42.5-91.7-23.1-45.4 9.9-98.4 60.9-98.4h79.7c35.8 0 64.8-29.6 64.9-65.3C511.5 97.1 368.1-26.9 204.3 5zM96 320c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm32-128c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm128-64c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm128 64c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32z"/></svg>
+          </div>
+          <div id="drawing-menubar-action-clear">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M32 464a48 48 0 0 0 48 48h288a48 48 0 0 0 48-48V128H32zm272-256a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zM432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16z"/></svg>
+          </div>
+        </div>
+        <div id="drawing-menubar-colors">
+          <div id="drawer-menubar-colors-black"></div>
+          <div id="drawer-menubar-colors-orange"></div>
+          <div id="drawer-menubar-colors-blue"></div>
+          <div id="drawer-menubar-colors-green"></div>
+        </div>
+        <canvas width="2000" height="2000"></canvas>
+      </div>
     </div>
     <div id="community">
       <div>

@@ -2,7 +2,7 @@ import * as shared from '../sharedTypes.js'
 import * as elements from '../elements.js'
 import * as random from 'lib0/random.js'
 import * as math from 'lib0/math.js'
-import { usercolors } from '../usercolors.js'
+import { userColor } from '../usercolor.js'
 import { html, render } from 'lit-html'
 
 const input = /** @type {any} */ (elements.intro.querySelector('input'))
@@ -30,17 +30,14 @@ if (localStorage.getItem('username') == null) {
 input.value = localStorage.getItem('username')
 input.removeAttribute('hidden')
 
-const userColor = usercolors[random.uint32() % usercolors.length]
-
 shared.provider.awareness.setLocalState({
   username: localStorage.getItem('username') || 'Anonymous',
   color: userColor.color,
   colorLight: userColor.light
 })
 
-document.documentElement.style.setProperty('--user-color', userColor.color);
-document.documentElement.style.setProperty('--user-color-light', userColor.light);
-
+document.documentElement.style.setProperty('--user-color', userColor.color)
+document.documentElement.style.setProperty('--user-color-light', userColor.light)
 
 /* mouse renderer */
 
