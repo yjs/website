@@ -1,7 +1,6 @@
 import * as Y from 'yjs' // eslint-disable-line
 import * as elements from '../elements.js'
 import * as shared from '../sharedTypes.js'
-import { userColor, usercolors } from '../usercolor.js'
 
 const ctx = /** @type {CanvasRenderingContext2D} */ (elements.drawingCanvas.getContext('2d'))
 const yDrawingContent = shared.drawingContent
@@ -68,15 +67,18 @@ const calculateCoordinateFromEvent = event => {
   return { x: (event.clientX - canvasRect.left) / canvasRect.width, y: (event.clientY - canvasRect.top) / canvasRect.height }
 }
 
-elements.drawingCanvas.addEventListener('mousedown', event => {
+const drawStart = coord => {
   const drawElement = new Y.Map()
   drawElement.set('color', currentColor)
   drawElement.set('type', 'path')
-  drawElement.set('coordinate', calculateCoordinateFromEvent(event))
+  drawElement.set('coordinate', calculateCoordinateFromEvent(coord))
   currPath = new Y.Array()
   drawElement.set('path', currPath)
   yDrawingContent.push([drawElement])
-})
+}
+
+elements.drawingCanvas.addEventListener('mousedown', drawStart)
+elements.drawingCanvas.addEventListener('touchstart', drawStart)
 
 const clearCurrPath = event => {
   currPath = null
@@ -84,10 +86,19 @@ const clearCurrPath = event => {
 
 elements.drawingCanvas.addEventListener('mouseleave', clearCurrPath)
 elements.drawingCanvas.addEventListener('mouseup', clearCurrPath)
+elements.drawingCanvas.addEventListener('touchcancel', clearCurrPath)
+elements.drawingCanvas.addEventListener('touchend', clearCurrPath)
 
-elements.drawingCanvas.addEventListener('mousemove', event => {
+const moveDraw = coord => {
   if (currPath !== null) {
-    currPath.push([calculateCoordinateFromEvent(event)])
+    currPath.push([calculateCoordinateFromEvent(coord)])
+  }
+}
+elements.drawingCanvas.addEventListener('mousemove', moveDraw)
+elements.drawingCanvas.addEventListener('touchmove', event => {
+  if (event.touches.length === 1) {
+    moveDraw(event.touches[0])
+    event.preventDefault()
   }
 })
 
