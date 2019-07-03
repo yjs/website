@@ -78,7 +78,12 @@ const drawStart = coord => {
 }
 
 elements.drawingCanvas.addEventListener('mousedown', drawStart)
-elements.drawingCanvas.addEventListener('touchstart', drawStart)
+elements.drawingCanvas.addEventListener('touchstart', event => {
+  if (event.touches.length === 1) {
+    drawStart(event.touches[0])
+    event.preventDefault()
+  }
+})
 
 const clearCurrPath = event => {
   currPath = null
