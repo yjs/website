@@ -216,7 +216,7 @@ nav {
     width: 12rem;
     transform: translateX(-24rem);
     transition: transform var(--hamburger-transition-time);
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
 
   #hamburger-checkbox:checked ~ nav {
@@ -355,7 +355,7 @@ nav > div > ul {
 #features {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 #features > p {
@@ -570,7 +570,7 @@ nav > div > ul {
   font-size: 1rem;
   margin: 1rem 2rem 1rem 0;
   padding: 0;
-  min-width: 16rem;
+  min-width: 17rem;
   flex: 1;
 }
 
@@ -592,7 +592,7 @@ nav > div > ul {
 }
 
 html {
-  font-size: 1.1vw;
+  font-size: 1em;
 }
 
 @media (max-aspect-ratio: 1/1), (orientation: portrait), (max-width: 1024px) {
@@ -612,9 +612,14 @@ html {
   }
 }
 
-
 @media (min-width: 1024px) {
   html {
-    font-size: 11 px; /* consider rem size break */
+    font-size: 1.5em; /* consider rem size break */
+  }
+}
+
+@media (min-width: 1800px) {
+  html {
+    font-size: 1.8em; /* consider rem size break */
   }
 }

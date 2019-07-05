@@ -47,9 +47,10 @@
     <div id="features">
       <p>
           Yjs is a shared editing framework. It exposes <span class="highlight">Shared Types</span> that can
-          be manipulated like any other data type. But they are synced automatically!
+          be manipulated like any other data type. But they are synced
+          automatically with other peers!
       </p>
-      <textarea id="features-typedemo" spellcheck="false">
+      <!--textarea id="features-typedemo" spellcheck="false">
 const ymap = new Y.Map()
 ymap.set(key, value)
 ymap.observe(event => { console.log('The shared map has changed') })
@@ -61,12 +62,13 @@ yarray.observe(event => { console.log('The shared array has changed') })
 const ytext = new Y.Text()
 ytext.insert(0, 'hello world', { bold: true })
 ytext.observe(event => { console.log('The shared text has changed') })
-      </textarea>
+      </textarea-->
       <div id="features-items">
         <div class="box-container">
           <h5>Automatic Syncing</h5>
-          <p>All interactive elements on this website are built with shared data types. They sync
-          automatically - even offline. Try it out!</p>
+          <p>All interactive elements on this website are built with shared
+          types. There are many extensions available for binding shared types to
+          editors like ProseMirror, Quill, or CodeMirror.</p>
         </div>
         <div class="box-container">
           <h5>Offline Support</h5>
