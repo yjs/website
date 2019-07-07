@@ -1,6 +1,6 @@
 /* eslint-env browser */
 import {
-  navInternal, find
+  navInternal, find, userlist
 } from '../elements.js'
 
 import * as time from 'lib0/time.js'
@@ -8,7 +8,7 @@ import * as math from 'lib0/math.js'
 
 const mainContainer = find('main')
 
-const scrollingElement = document.scrollingElement || document.documentElement
+const scrollingElement = /** @type {HTMLElement} */ (document.scrollingElement || document.documentElement)
 
 /**
  * @type {Element}
@@ -37,6 +37,12 @@ const updateScrollInformation = () => {
     }
   }
   lastScrollUpdate = time.getUnixTime()
+  // if scrolled all the way to the top, show userlist
+  if (scrollingElement.scrollTop === 0) {
+    userlist.setAttribute('show', 'true')
+  } else {
+    userlist.removeAttribute('show')
+  }
 }
 
 addEventListener('scroll', updateScrollInformation)
@@ -69,3 +75,6 @@ setInterval(() => {
     localStorage.setItem('location', /** @type {string} */ (activeSection.getAttribute('id')))
   }
 }, 150)
+
+// fallback if scrollingElement has no style
+;(scrollingElement.style || {}).scrollBehavior = 'smooth'

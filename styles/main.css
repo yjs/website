@@ -39,7 +39,6 @@ body {
 
 html, body {
   overflow: auto;
-  scroll-behavior: smooth;
   scroll-snap-type: y proximity;
 }
 
@@ -51,6 +50,10 @@ body, input, select, textarea{
 
 a {
   text-decoration: none;
+  color: var(--theme-highlight);
+}
+
+nav a {
   color: inherit;
 }
 
@@ -90,6 +93,116 @@ nav {
   top: 0;
   bottom: 0;
   z-index: 2;
+}
+
+#userlist {
+  padding-top: 2rem;
+  padding-left: 1.6rem;
+  padding-right: var(--scrollbar-width);
+  padding-bottom: var(--scrollbar-width);
+  position: fixed;
+  top: 0;
+  right: -20px;
+  bottom: -20px;
+  width: var(--userlist-width);
+  overflow-wrap: break-word;
+  font-size: .8rem;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  overflow-x: visible;
+}
+
+#userlist > div {
+  padding: .3rem 40px .3rem .3rem;
+  border-left-style: solid;
+  border-left-width: .2rem;
+  margin: .1rem 0;
+  width: calc(100% + 40px);
+  transition: transform .5s;
+  transform: translateX(calc(var(--golden-ratio-4) - .6rem));
+  box-sizing: border-box;
+}
+
+#userlist > div[y-islocaluser="true"] {
+  font-weight: bold;
+}
+
+@media (min-aspect-ratio: 1/1) and (orientation: landscape) and (min-width: 1024px) {
+  #userlist:hover > div {
+    transform: translateX(0);
+    transition: scale .5s, transform .5s;
+  }
+
+  #userlist:hover > div:nth-child(1) {
+    transition-delay: .3s;
+  }
+
+  #userlist:hover > div:nth-child(2) {
+    transition-delay: .4s;
+  }
+
+  #userlist:hover > div:nth-child(3) {
+    transition-delay: .5s;
+  }
+
+  #userlist:hover > div:nth-child(4) {
+    transition-delay: .55s;
+  }
+
+  #userlist:hover > div:nth-child(5) {
+    transition-delay: .6s;
+  }
+
+  #userlist:hover > div:nth-child(6) {
+    transition-delay: .65s;
+  }
+
+  #userlist:hover > div:nth-child(7) {
+    transition-delay: .7s;
+  }
+
+  #userlist:hover > div:nth-child(n + 7) {
+    transition-delay: .725s;
+  }
+}
+
+/* show userlist if scrolled up all the way to the top */
+#userlist[show] > div {
+  transform: translateX(0);
+  transition: scale .5s, transform .5s;
+}
+
+#userlist[show] > div:nth-child(1) {
+  transition-delay: .3s;
+}
+
+#userlist[show] > div:nth-child(2) {
+  transition-delay: .4s;
+}
+
+#userlist[show] > div:nth-child(3) {
+  transition-delay: .5s;
+}
+
+#userlist[show] > div:nth-child(4) {
+  transition-delay: .55s;
+}
+
+#userlist[show] > div:nth-child(5) {
+  transition-delay: .6s;
+}
+
+#userlist[show] > div:nth-child(6) {
+  transition-delay: .65s;
+}
+
+#userlist[show] > div:nth-child(7) {
+  transition-delay: .7s;
+}
+
+#userlist[show] > div:nth-child(n + 7) {
+  transition-delay: .725s;
 }
 
 #hamburger {
@@ -223,6 +336,16 @@ nav {
     transform: translateX(0);
   }
 
+  main {
+    filter: blur(0);
+    transition: filter .5s;
+  }
+
+  #hamburger-checkbox:checked ~ main {
+    filter: blur(.2em);
+    transition: filter 1s;
+  }
+
   /* More space after each section, so you can see the headline */
 
   main > div {
@@ -235,6 +358,59 @@ nav {
 
   main > div {
     min-height: calc(100vh - var(--hamburger-height) - 3rem);
+  }
+
+  #userlist {
+    font-size: 1.1rem;
+    width: 6em;
+    transition: right 0s;
+  }
+
+  #hamburger-checkbox:not(:checked) ~ #userlist:not([show]) {
+    right: -100vw;
+    transition-delay: 2s;
+  }
+
+  #userlist > div {
+    transform: translateX(6em);
+  }
+
+  #hamburger-checkbox:checked ~ #userlist > div {
+    transform: translateX(0);
+    transition: transform .5s;
+    transition-delay: .2s;
+  }
+
+  #hamburger-checkbox:checked ~ #userlist > div:nth-child(1) {
+    transition-delay: .3s;
+  }
+
+  #hamburger-checkbox:checked ~ #userlist > div:nth-child(2) {
+    transition-delay: .4s;
+  }
+
+  #hamburger-checkbox:checked ~ #userlist > div:nth-child(3) {
+    transition-delay: .5s;
+  }
+
+  #hamburger-checkbox:checked ~ #userlist > div:nth-child(4) {
+    transition-delay: .55s;
+  }
+
+  #hamburger-checkbox:checked ~ #userlist > div:nth-child(5) {
+    transition-delay: .6s;
+  }
+
+  #hamburger-checkbox:checked ~ #userlist > div:nth-child(6) {
+    transition-delay: .65s;
+  }
+
+  #hamburger-checkbox:checked ~ #userlist > div:nth-child(7) {
+    transition-delay: .7s;
+  }
+
+  #hamburger-checkbox:checked ~ #userlist > div:nth-child(n + 7) {
+    transition-delay: .725s;
   }
 }
 
@@ -273,42 +449,6 @@ nav > div > ul {
   padding-left: .3rem;
 }
 
-#userlist {
-  padding-top: 2rem;
-  padding-left: -2rem;
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: var(--userlist-width);
-  overflow-wrap: break-word;
-  font-size: .8rem;
-}
-
-#userlist > div {
-  display: flex;
-}
-
-#userlist > div > span {
-  margin-right: .3rem;
-}
-
-#userlist > div > div {
-  overflow: auto;
-  overflow-wrap: break-word;
-}
-
-#userlist > div[y-islocaluser="true"] {
-  font-weight: bold;
-}
-
-/*
-#userlist > div[y-islocaluser="true"] > div::after {
-  content: ' (you)';
-  font-size: 6.rem;
-}
-*/
-
 #intro {
   background: url('/images/logo/yjs.svg') no-repeat center/14rem;
 }
@@ -324,6 +464,7 @@ nav > div > ul {
   #intro-name {
     top: calc(50% - 15rem);
     left: calc(var(--hamburger-height));
+    right: var(--navwidth);
   }
 }
 
@@ -334,7 +475,7 @@ nav > div > ul {
   border: none;
   border-bottom: .1rem solid var(--user-color);
   outline: none;
-  width: 14rem;
+  width: 11.7rem;
 }
 
 #intro-cursors {
@@ -386,6 +527,28 @@ nav > div > ul {
 #features-items > * {
   margin: 1rem;
   max-height: 19rem;
+}
+
+#demos {
+}
+
+#demo-list-container {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+#demo-list-container > div {
+  padding: .7em;
+}
+
+#demo-list-container > div > h5 {
+  margin: .4em 0;
+}
+
+#demo-list-container > div > img {
+  min-width: 8em;
+  min-height: 5em;
+  background-color: grey;
 }
 
 #editor, #editor .ProseMirror[contenteditable] {
@@ -566,6 +729,10 @@ nav > div > ul {
   width: 13rem;
 }
 
+#community a {
+  color: inherit;
+}
+
 .box-container {
   font-size: 1rem;
   margin: 1rem 2rem 1rem 0;
@@ -607,19 +774,16 @@ html {
     padding: 1rem;
     width: calc(100vw - var(--scrollbar-width) - 2rem);
   }
-  #userlist {
-    display: none;
-  }
 }
 
 @media (min-width: 1024px) {
   html {
-    font-size: 1.5em; /* consider rem size break */
+    font-size: 1.3em; /* consider rem size break */
   }
 }
 
-@media (min-width: 1800px) {
+@media (min-width: 1850px) {
   html {
-    font-size: 1.8em; /* consider rem size break */
+    font-size: 1.5em; /* consider rem size break */
   }
 }

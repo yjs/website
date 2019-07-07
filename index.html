@@ -24,8 +24,9 @@
       <ul class="nav-internal">
         <li><a href="#intro">Overview</a></li>
         <li><a href="#features">Features</a></li>
-        <li><a href="#shared-editing">Shared Editing</a></li>
+        <li><a href="#demos">Demos</a></li>
         <li><a href="#drawing">Drawing</a></li>
+        <li><a href="#shared-editing">Shared Editing</a></li>
         <li><a href="#community">Community</a></li>
       </ul>
       <ul class="nav-external">
@@ -48,7 +49,7 @@
       <p>
           Yjs is a shared editing framework. It exposes <span class="highlight">Shared Types</span> that can
           be manipulated like any other data type. But they are synced
-          automatically with other peers!
+          automatically!
       </p>
       <!--textarea id="features-typedemo" spellcheck="false">
 const ymap = new Y.Map()
@@ -86,9 +87,34 @@ ytext.observe(event => { console.log('The shared text has changed') })
         </div>
       </div>
     </div>
-    <div id="shared-editing">
-      <h2>Shared Editing Demo</h2>
-      <div id="editor"></div>
+    <div id="demos">
+      <h2>Demos</h2>
+      <p>This website is a collection of collaborative demos. Try them out
+      on different devices make sure to try them out
+      while offline too. There are many more demos in the <a
+      href="https://github.com/yjs/yjs-demos">yjs-demos</a> repository.</p>
+      <div id="demo-list-container">
+        <div>
+          <h5>ProseMirror</h5>
+          <img src=""></a>
+        </div>
+        <div>
+          <h5>Quill</h5>
+          <img src=""></a>
+        </div>
+        <div>
+          <h5>CodeMirror</h5>
+          <img src=""></a>
+        </div>
+        <div>
+          <h5>Ace</h5>
+          <img src=""></a>
+        </div>
+        <div>
+          <h5>Monaco</h5>
+          <img src=""></a>
+        </div>
+      </div>
     </div>
     <div id="drawing">
       <h2>Drawing</h2>
@@ -113,6 +139,10 @@ ytext.observe(event => { console.log('The shared text has changed') })
         </div>
         <canvas width="2000" height="2000"></canvas>
       </div>
+    </div>
+    <div id="shared-editing">
+      <h2>Shared Editing Demo</h2>
+      <div id="editor"></div>
     </div>
     <div id="community">
       <div>
