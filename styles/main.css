@@ -463,8 +463,27 @@ nav > div > ul {
 @media (max-aspect-ratio: 1/1), (orientation: portrait), (max-width: 1024px) {
   #intro-name {
     top: calc(50% - 15rem);
-    left: calc(var(--hamburger-height));
+    left: calc(var(--hamburger-height) - 1rem);
     right: var(--navwidth);
+  }
+}
+
+@media (max-width: 440px) and (min-height: 600px) {
+  #intro-name {
+    top: calc(50% - 18rem);
+    left: 1rem;
+  }
+}
+
+@media (min-aspect-ratio: 1/1) and (orientation: landscape) and (max-width: 1024px) {
+  #intro {
+    background: url('/images/logo/yjs.svg') no-repeat center/8rem;
+  }
+
+  #intro-name {
+    top: 50%;
+    left: 1rem;
+    background-color: #ffffff33;
   }
 }
 
