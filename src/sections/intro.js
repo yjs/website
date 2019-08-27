@@ -15,8 +15,12 @@ input.addEventListener('input', e => {
 const updateAwarenessFromLocalstorage = () => {
   const localstorageUsername = localStorage.getItem('username')
   const awarenessState = shared.provider.awareness.getLocalState()
-  if (localstorageUsername != null && awarenessState !== null && localstorageUsername !== awarenessState.username) {
-    shared.provider.awareness.setLocalStateField('username', localstorageUsername || 'Anonymous') 
+  if (localstorageUsername != null && awarenessState !== null && localstorageUsername !== awarenessState.user.name) {
+    shared.provider.awareness.setLocalStateField('user', {
+      name: localstorageUsername || 'Anonymous',
+      color: userColor.color,
+      colorLight: userColor.light
+    })
     input.value = localstorageUsername
   }
 }
@@ -30,8 +34,8 @@ if (localStorage.getItem('username') == null) {
 input.value = localStorage.getItem('username')
 input.removeAttribute('hidden')
 
-shared.provider.awareness.setLocalState({
-  username: localStorage.getItem('username') || 'Anonymous',
+shared.provider.awareness.setLocalStateField('user', {
+  name: localStorage.getItem('username') || 'Anonymous',
   color: userColor.color,
   colorLight: userColor.light
 })
@@ -58,9 +62,10 @@ const renderCursors = () => {
   const infoRect = elements.intro.getBoundingClientRect()
   const cursors = Array.from(shared.awareness.getStates().entries())
     .filter(([userid, state]) => userid !== shared.doc.clientID && state.introMouse != null)
-    .map(([userid, state]) => html`<div style="background-color:${state.color};transform:translate(${math.floor(state.introMouse.x * infoRect.width)}px, ${math.floor(state.introMouse.y * infoRect.height)}px)"></div>`)
+    .map(([userid, state]) => html`<div style="background-color:${state.user.color};transform:translate(${math.floor(state.introMouse.x * infoRect.width)}px, ${math.floor(state.introMouse.y * infoRect.height)}px)"></div>`)
   render(html`${cursors}`, elements.introCursors)
 }
 
 renderCursors()
+// @ts-ignore
 shared.awareness.on('change', renderCursors)

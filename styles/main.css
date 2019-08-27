@@ -327,7 +327,7 @@ nav {
     width: 12rem;
     transform: translateX(-24rem);
     transition: transform var(--hamburger-transition-time);
-    font-size: 1rem;
+    font-size: .8rem;
   }
 
   #hamburger-checkbox:checked ~ nav {
@@ -796,10 +796,16 @@ html {
   html {
     font-size: 1.3em; /* consider rem size break */
   }
+  nav {
+    font-size: .8rem;
+  }
 }
 
 @media (min-width: 1850px) {
   html {
     font-size: 1.5em; /* consider rem size break */
+  }
+  nav {
+    font-size: 1.2rem;
   }
 }

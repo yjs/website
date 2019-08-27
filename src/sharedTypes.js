@@ -15,4 +15,9 @@ export const prosemirrorEditorContent = /** @type {Y.XmlFragment} */ (doc.get('p
  */
 export const drawingContent = doc.getArray('drawing')
 
+// @ts-ignore
 window.ydoc = doc
+// @ts-ignore
+window.awareness = awareness
+// @ts-ignore
+window.provider = provider
