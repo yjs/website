@@ -6,7 +6,7 @@
   "scripts": {
     "dist": "rollup -c",
     "dist:production": "PRODUCTION=1 rollup -c",
-    "start": "concurrently 'rollup -wc' 'live-server .' 'node server.js'"
+    "start": "concurrently 'rollup -wc' 'live-server'"
   },
   "keywords": [
     "Yjs"
@@ -14,15 +14,15 @@
   "author": "kevin.jahns@protonmail.com",
   "license": "MIT",
   "dependencies": {
-    "lib0": "0.0.6",
-    "y-prosemirror": "0.0.11",
-    "y-websocket": "^1.0.0-6",
-    "yjs": "^13.0.0-96",
+    "codemirror": "^5.48.0",
+    "lib0": "^0.1.7",
+    "lit-html": "^1.1.0",
     "prosemirror-example-setup": "^1.0.1",
     "prosemirror-state": "^1.2.3",
     "prosemirror-view": "^1.9.10",
-    "codemirror": "^5.48.0",
-    "lit-html": "^1.1.0"
+    "y-prosemirror": "^0.1.5",
+    "y-webrtc": "^10.0.2",
+    "yjs": "^13.0.0-103"
   },
   "devDependencies": {
     "concurrently": "^4.1.1",
