@@ -13,7 +13,7 @@ const prosemirrorView = new EditorView(editor, {
     schema,
     plugins: [
       ySyncPlugin(shared.prosemirrorEditorContent),
-      yCursorPlugin(shared.provider.awareness),
+      yCursorPlugin(shared.awareness),
       yUndoPlugin(),
       keymap({
           'Mod-z': undo,

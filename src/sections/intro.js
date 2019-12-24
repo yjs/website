@@ -1,6 +1,5 @@
 import * as shared from '../sharedTypes.js'
 import * as elements from '../elements.js'
-import * as random from 'lib0/random.js'
 import * as math from 'lib0/math.js'
 import { userColor } from '../usercolor.js'
 import { html, render } from 'lit-html'
@@ -14,9 +13,9 @@ input.addEventListener('input', e => {
 
 const updateAwarenessFromLocalstorage = () => {
   const localstorageUsername = localStorage.getItem('username')
-  const awarenessState = shared.provider.awareness.getLocalState()
+  const awarenessState = shared.awareness.getLocalState()
   if (localstorageUsername != null && awarenessState !== null && localstorageUsername !== awarenessState.user.name) {
-    shared.provider.awareness.setLocalStateField('user', {
+    shared.awareness.setLocalStateField('user', {
       name: localstorageUsername || 'Anonymous',
       color: userColor.color,
       colorLight: userColor.light
@@ -34,7 +33,7 @@ if (localStorage.getItem('username') == null) {
 input.value = localStorage.getItem('username')
 input.removeAttribute('hidden')
 
-shared.provider.awareness.setLocalStateField('user', {
+shared.awareness.setLocalStateField('user', {
   name: localStorage.getItem('username') || 'Anonymous',
   color: userColor.color,
   colorLight: userColor.light

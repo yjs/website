@@ -1,11 +1,16 @@
 
 import * as Y from 'yjs'
 import { WebrtcProvider } from 'y-webrtc'
+import { WebsocketProvider } from 'y-websocket'
+
+const websocketUrl = location.hostname === 'localhost' || location.hostname === '127.0.0.1' ? 'ws://localhost:1234' : 'wss://yjs-demos.now.sh'
 
 export const doc = new Y.Doc()
-export const provider = new WebrtcProvider('yjs-website', doc)
-export const awareness = provider.awareness
-export const prosemirrorEditorContent = /** @type {Y.XmlFragment} */ (doc.get('prosemirror', Y.XmlFragment))
+export const websocketProvider = new WebsocketProvider(websocketUrl, 'yjs-website', doc)
+export const awareness = websocketProvider.awareness
+export const webrtcProvider = new WebrtcProvider('yjs-website', doc, { awareness })
+export const prosemirrorEditorContent = doc.getXmlFragment('prosemirror')
+
 /**
  * An array of draw element.
  * A draw element is a Y.Map that has a type attribute. We will support only type "path", but you could also define type "text", or type "rectangle".
@@ -19,4 +24,6 @@ window.ydoc = doc
 // @ts-ignore
 window.awareness = awareness
 // @ts-ignore
-window.provider = provider
+window.webrtcProvider = webrtcProvider
+// @ts-ignore
+window.websocketProvider = websocketProvider
