@@ -506,7 +506,7 @@ nav > div > ul {
   padding: .4rem;
   border-radius: 50%;
   border: .05rem solid var(--background-color);
-  transition: transform 60ms;
+  /* transition: transform 60ms; */
 }
 
 #features {
