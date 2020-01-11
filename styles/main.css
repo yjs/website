@@ -548,25 +548,6 @@ nav > div > ul {
 #demos {
 }
 
-#demo-list-container {
-  display: flex;
-  flex-flow: row wrap;
-}
-
-#demo-list-container > div {
-  padding: .7em;
-}
-
-#demo-list-container > div > h5 {
-  margin: .4em 0;
-}
-
-#demo-list-container > div > img {
-  min-width: 8em;
-  min-height: 5em;
-  background-color: grey;
-}
-
 #editor, #editor .ProseMirror[contenteditable] {
   min-height: 70vh;
 }

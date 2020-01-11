@@ -8,7 +8,7 @@ const websocketUrl = location.hostname === 'localhost' || location.hostname === 
 export const doc = new Y.Doc()
 export const websocketProvider = new WebsocketProvider(websocketUrl, 'yjs-website', doc)
 export const awareness = websocketProvider.awareness
-export const webrtcProvider = new WebrtcProvider('yjs-website', doc, { awareness })
+// export const webrtcProvider = new WebrtcProvider('yjs-website', doc, { awareness })
 export const prosemirrorEditorContent = doc.getXmlFragment('prosemirror')
 
 /**
@@ -23,7 +23,7 @@ export const drawingContent = doc.getArray('drawing')
 window.ydoc = doc
 // @ts-ignore
 window.awareness = awareness
-// @ts-ignore
-window.webrtcProvider = webrtcProvider
+// @ts-ignor
+// window.webrtcProvider = webrtcProvider 
 // @ts-ignore
 window.websocketProvider = websocketProvider

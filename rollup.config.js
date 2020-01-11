@@ -23,6 +23,9 @@ const customLibModules = new Set([
 const debugResolve = {
   resolveId (importee) {
     if (localImports) {
+      if (importee === 'yjs') {
+        return `${process.cwd()}/../yjs/src/index.js`
+      }
       if (customModules.has(importee.split('/')[0])) {
         return `${process.cwd()}/../${importee}/src/${importee}.js`
       }
@@ -53,8 +56,8 @@ const minificationPlugins = process.env.PRODUCTION ? [terser({
 export default [{
   input: './src/index.js',
   output: [{
-    file: 'dist/index.js',
-    format: 'iife',
+    dir: 'dist',
+    format: 'esm',
     sourcemap: true
   }],
   plugins: [

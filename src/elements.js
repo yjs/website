@@ -19,3 +19,4 @@ export const drawingMenubarCheckbox = /** @type {HTMLInputElement} */ (find('#dr
 export const drawingMenubarColors = find('#drawing-menu-colors')
 export const drawingMenubarActionColor = find('#drawing-menubar-action-color')
 export const drawingMenubarActionClear = find('#drawing-menubar-action-clear')
+export const demoContent = find('#demo-content')
