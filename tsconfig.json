@@ -42,7 +42,10 @@
       "yjs": ["node_modules/yjs/src/index.js"],
       "lib0/*": ["node_modules/lib0/*"],
       "y-protocols/*": ["node_modules/y-protocols/*"],
-      "y-prosemirror": ["node_modules/y-prosemirror/src/y-prosemirror.js"]
+      "y-prosemirror": ["node_modules/y-prosemirror/src/y-prosemirror.js"],
+      "y-quill": ["node_modules/y-quill/src/y-quill.js"],
+      "y-websocket": ["node_modules/y-websocket/src/y-websocket.js"],
+      "y-webrtc": ["node_modules/y-webrtc/src/y-webrtc.js"]
     },                     /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */
     // "rootDirs": [],                        /* List of root folders whose combined content represents the structure of the project at runtime. */
     // "typeRoots": [],                       /* List of folders to include type definitions from. */

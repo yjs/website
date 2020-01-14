@@ -3,7 +3,7 @@ import * as Y from 'yjs'
 import { WebrtcProvider } from 'y-webrtc'
 import { WebsocketProvider } from 'y-websocket'
 
-const websocketUrl = location.hostname === 'localhost' || location.hostname === '127.0.0.1' ? 'ws://localhost:1234' : 'wss://demos.yjs.dev'
+const websocketUrl = 'wss://demos.yjs.dev'
 
 export const doc = new Y.Doc()
 export const websocketProvider = new WebsocketProvider(websocketUrl, 'yjs-website', doc)

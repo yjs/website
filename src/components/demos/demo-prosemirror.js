@@ -11,10 +11,17 @@ import { ySyncPlugin, yCursorPlugin, yUndoPlugin, undo, redo } from 'y-prosemirr
 import { schema } from './demo-prosemirror-schema.js'
 import * as elements from '../../elements.js'
 
+const clearProsemirrorDemo = () => {
+  const elems = elements.demoContent.querySelectorAll('.demo-prosemirror')
+  for (let i = 0; i < elems.length; i++) {
+    elems[i].remove()
+  }
+}
+
 component.createComponent('y-demo-prosemirror', {
   onStateChange: (state, prevState, component) => {
     if (!state) {
-      elements.demoContent.innerHTML = ''
+      clearProsemirrorDemo()
       if (/** @type {any} */ (component).pmView) {
         setTimeout(() => {
           /** @type {any} */ (component).pmView.destroy()
@@ -27,8 +34,8 @@ component.createComponent('y-demo-prosemirror', {
       }
       const { doc, awareness } = state
       if (doc && awareness) {
-        const editorDom = dom.element('div')
-        elements.demoContent.innerHTML = ''
+        const editorDom = dom.element('div', [pair.create('class', 'demo-prosemirror')])
+        clearProsemirrorDemo()
         elements.demoContent.appendChild(editorDom)
         ;/** @type {any} */ (component).pmView = new EditorView(editorDom, {
           state: EditorState.create({
