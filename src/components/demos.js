@@ -5,7 +5,7 @@ import * as types from '../sharedTypes.js'
 dcomps.defineTab()
 
 component.createComponent('y-demos', {
-  template: `<d-tab></d-tab>`,
+  template: '<d-tab></d-tab>',
   state: { doc: types.doc, awareness: types.awareness },
   childStates: {
     'd-tab': state => ({

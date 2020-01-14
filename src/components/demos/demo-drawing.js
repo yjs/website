@@ -111,11 +111,11 @@ component.createComponent('y-demo-drawing', {
       // draw state
       const ctx = /** @type {CanvasRenderingContext2D} */ (drawingCanvas.getContext('2d'))
       const yDrawingContent = shared.drawingContent
-      
+
       const requestAnimationFrame = window.requestAnimationFrame || setTimeout
-      
+
       let needToRedraw = true
-      
+
       /**
        * Draw the canvas
        */
@@ -180,12 +180,12 @@ component.createComponent('y-demo-drawing', {
         yDrawingContent.delete(0, yDrawingContent.length)
         drawingMenubarCheckbox.checked = false
       }
-      
+
       const menuBlack = /** @type {HTMLElement} */ (dom.querySelector(shadow, '#drawer-menubar-colors-black'))
       const menuOrange = /** @type {HTMLElement} */ (dom.querySelector(shadow, '#drawer-menubar-colors-orange'))
       const menuBlue = /** @type {HTMLElement} */ (dom.querySelector(shadow, '#drawer-menubar-colors-blue'))
       const menuGreen = /** @type {HTMLElement} */ (dom.querySelector(shadow, '#drawer-menubar-colors-green'))
-      
+
       menuBlack.addEventListener('click', cBlack)
       menuOrange.addEventListener('click', cOrange)
       menuBlue.addEventListener('click', cBlue)

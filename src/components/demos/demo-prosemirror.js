@@ -18,6 +18,10 @@ const clearProsemirrorDemo = () => {
   }
 }
 
+if (!elements.find('#prosemirror-style')) {
+  document.body.appendChild(dom.element('link', [pair.create('rel', 'stylesheet'), pair.create('href', '/src/components/demos/demo-prosemirror.css'), pair.create('id', 'prosemirror-style')]))
+}
+
 component.createComponent('y-demo-prosemirror', {
   onStateChange: (state, prevState, component) => {
     if (!state) {
@@ -27,11 +31,8 @@ component.createComponent('y-demo-prosemirror', {
           /** @type {any} */ (component).pmView.destroy()
         })
       }
-      // todo destroy old state 
+      // todo destroy old state
     } else {
-      if (!elements.find('#prosemirror-style')) {
-        document.body.appendChild(dom.element('link', [pair.create('rel', 'stylesheet'), pair.create('href', '/src/components/demos/demo-prosemirror.css'), pair.create('id', 'prosemirror-style')]))
-      }
       const { doc, awareness } = state
       if (doc && awareness) {
         const editorDom = dom.element('div', [pair.create('class', 'demo-prosemirror')])
@@ -45,9 +46,9 @@ component.createComponent('y-demo-prosemirror', {
               yCursorPlugin(awareness),
               yUndoPlugin(),
               keymap({
-                  'Mod-z': undo,
-                  'Mod-y': redo,
-                  'Mod-Shift-z': redo
+                'Mod-z': undo,
+                'Mod-y': redo,
+                'Mod-Shift-z': redo
               })
             ].concat(exampleSetup({ schema }))
           })

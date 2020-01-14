@@ -25,6 +25,6 @@ window.ydoc = doc
 // @ts-ignore
 window.awareness = awareness
 // @ts-ignore
-// window.webrtcProvider = webrtcProvider 
+// window.webrtcProvider = webrtcProvider
 // @ts-ignore
 window.websocketProvider = websocketProvider

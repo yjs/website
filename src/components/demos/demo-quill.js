@@ -16,6 +16,19 @@ const clearQuillDemo = () => {
   }
 }
 
+let cssLoaded = false
+let whenCssLoaded = () => {}
+
+if (!elements.find('#quill-style')) {
+  const quillStyle = document.body.appendChild(dom.element('link', [pair.create('rel', 'stylesheet'), pair.create('href', '/styles/quill.snow.css'), pair.create('id', 'quill-style')]))
+  document.body.appendChild(dom.element('link', [pair.create('rel', 'stylesheet'), pair.create('href', '/styles/katex.min.css')]))
+  document.body.appendChild(dom.element('link', [pair.create('rel', 'stylesheet'), pair.create('href', '/styles/monokai-sublime.min.css')]))
+  ;/** @type {any} */ (quillStyle).onload = () => {
+    cssLoaded = true
+    whenCssLoaded()
+  }
+}
+
 component.createComponent('y-demo-quill', {
   onStateChange: (state, prevState, component) => {
     if (!state) {
@@ -35,7 +48,7 @@ component.createComponent('y-demo-quill', {
             const containerDom = dom.element('div', [pair.create('class', 'demo-quill')], [editorDom])
             clearQuillDemo()
             elements.demoContent.appendChild(containerDom)
-    
+
             // @ts-ignore
             var editor = new Quill(editorDom, {
               modules: {
@@ -56,11 +69,9 @@ component.createComponent('y-demo-quill', {
           }
         }
       }
-      if (!elements.find('#quill-style')) {
-        const quillStyle = document.body.appendChild(dom.element('link', [pair.create('rel', 'stylesheet'), pair.create('href', '//cdn.quilljs.com/1.3.6/quill.snow.css'), pair.create('id', 'quill-style')]))
-        document.body.appendChild(dom.element('link', [pair.create('rel', 'stylesheet'), pair.create('href', '//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css')]))
-        document.body.appendChild(dom.element('link', [pair.create('rel', 'stylesheet'), pair.create('href', '//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/monokai-sublime.min.css')]))
-        ;/** @type {any} */ (quillStyle).onload = assignEditor
+
+      if (!cssLoaded) {
+        whenCssLoaded = assignEditor
       } else {
         assignEditor()
       }

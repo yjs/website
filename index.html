@@ -1,6 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <script>
+    // This is the service worker with the Cache-first network
+    if ("serviceWorker" in navigator) {
+      if (navigator.serviceWorker.controller) {
+        console.log("[PWA Builder] active service worker found, no need to register");
+      } else {
+        // Register the service worker
+        navigator.serviceWorker
+          .register("./service-worker.js", {
+            scope: "./"
+          })
+      }
+    }
+
+  </script>
   <link rel="stylesheet" href="./styles/main.css">
   <link rel="stylesheet" href="./styles/codemirror.css">
   <script type="module" src="./dist/index.js" defer></script>

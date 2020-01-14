@@ -2,3 +2,5 @@ node_modules
 dist
 .vscode
 .dat
+service-worker.js
+service-worker.js.map
