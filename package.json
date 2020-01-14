@@ -4,9 +4,10 @@
   "description": "Yjs website",
   "main": "index.js",
   "scripts": {
+    "clean": "rm -rf dist service-worker.js*",
     "dist": "rm -rf dist && rollup -c && rollup -c rollup.sw.config.js",
     "dist:production": "PRODUCTION=1 npm run dist",
-    "start": "concurrently 'rollup -wc' 'http-server -o index.html'"
+    "start": "rm -rf dist && concurrently 'rollup -wc' 'http-server -o index.html'"
   },
   "keywords": [
     "Yjs"
@@ -15,7 +16,7 @@
   "license": "MIT",
   "dependencies": {
     "codemirror": "^5.48.0",
-    "d-components": "^0.1.1",
+    "d-components": "^0.1.2",
     "lib0": "^0.2.4",
     "lit-html": "^1.1.0",
     "prosemirror-example-setup": "^1.0.1",

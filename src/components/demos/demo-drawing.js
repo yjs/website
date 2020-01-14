@@ -23,13 +23,13 @@ const drawStart = (coord, el) => {
     el._internal.currPath = new Y.Array()
     drawElement.set('path', el._internal.currPath)
     shared.drawingContent.push([drawElement])
-  } else {
-    return false
   }
+  return false
 }
 
 const clearCurrPath = (event, el) => {
   el._internal.currPath = null
+  return false
 }
 
 const moveDraw = (coord, el) => {
@@ -37,9 +37,8 @@ const moveDraw = (coord, el) => {
     if (el._internal.currPath !== null) {
       el._internal.currPath.push([calculateCoordinateFromEvent(coord, el)])
     }
-  } else {
-    return false
   }
+  return false
 }
 
 component.createComponent('y-demo-drawing', {
@@ -71,8 +70,9 @@ component.createComponent('y-demo-drawing', {
      */
     touchstart: (event, el) => {
       if (event.touches.length === 1) {
-        return drawStart(event.touches[0], el)
+        drawStart(event.touches[0], el)
       }
+      return false
     },
     mouseleave: clearCurrPath,
     mouseup: clearCurrPath,
@@ -86,8 +86,8 @@ component.createComponent('y-demo-drawing', {
     touchmove: (event, el) => {
       if (event.touches.length === 1) {
         moveDraw(event.touches[0], el)
-        event.preventDefault()
       }
+      return false
     }
   },
   onStateChange: (state, prevState, el) => {
@@ -208,6 +208,7 @@ component.createComponent('y-demo-drawing', {
   :host {
     position: relative;
     display: block;
+    touch-action: none;
   }
 
   canvas {
