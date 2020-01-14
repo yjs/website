@@ -156,7 +156,8 @@ component.createComponent('y-demo-drawing', {
       }
       yDrawingContent.observeDeep(requestDrawAnimationFrame)
       el._internal.unregisterYDraw = () => yDrawingContent.unobserveDeep(requestDrawAnimationFrame)
-      
+      requestDrawAnimationFrame()
+
       /**
        * @param {string} color
        */
