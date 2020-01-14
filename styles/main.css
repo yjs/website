@@ -545,9 +545,6 @@ nav > div > ul {
   max-height: 19rem;
 }
 
-#demos {
-}
-
 #editor, #editor .ProseMirror[contenteditable] {
   min-height: 70vh;
 }
