@@ -1,14 +1,15 @@
 
 import * as Y from 'yjs'
 import { WebrtcProvider } from 'y-webrtc'
-import { WebsocketProvider } from 'y-websocket'
+// import { WebsocketProvider } from 'y-websocket'
 
 const websocketUrl = 'wss://demos.yjs.dev'
 
 export const doc = new Y.Doc()
-export const websocketProvider = new WebsocketProvider(websocketUrl, 'yjs-website', doc)
-export const awareness = websocketProvider.awareness
-// export const webrtcProvider = new WebrtcProvider('yjs-website', doc, { awareness })
+// export const websocketProvider = new WebsocketProvider(websocketUrl, 'yjs-website', doc)
+
+export const webrtcProvider = new WebrtcProvider('yjs-website', doc)
+export const awareness = webrtcProvider.awareness
 export const prosemirrorEditorContent = doc.getXmlFragment('prosemirror')
 
 /**
@@ -23,7 +24,7 @@ export const drawingContent = doc.getArray('drawing')
 window.ydoc = doc
 // @ts-ignore
 window.awareness = awareness
-// @ts-ignor
-// window.webrtcProvider = webrtcProvider 
 // @ts-ignore
-window.websocketProvider = websocketProvider
+window.webrtcProvider = webrtcProvider 
+// @ts-ignore
+// window.websocketProvider = websocketProvider
