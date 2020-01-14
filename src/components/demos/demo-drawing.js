@@ -15,13 +15,17 @@ const calculateCoordinateFromEvent = (event, el) => {
 }
 
 const drawStart = (coord, el) => {
-  const drawElement = new Y.Map()
-  drawElement.set('color', el._internal.currentColor)
-  drawElement.set('type', 'path')
-  drawElement.set('coordinate', calculateCoordinateFromEvent(coord, el))
-  el._internal.currPath = new Y.Array()
-  drawElement.set('path', el._internal.currPath)
-  shared.drawingContent.push([drawElement])
+  if (coord.target == null || coord.target.nodeName === 'CANVAS') {
+    const drawElement = new Y.Map()
+    drawElement.set('color', el._internal.currentColor)
+    drawElement.set('type', 'path')
+    drawElement.set('coordinate', calculateCoordinateFromEvent(coord, el))
+    el._internal.currPath = new Y.Array()
+    drawElement.set('path', el._internal.currPath)
+    shared.drawingContent.push([drawElement])
+  } else {
+    return false
+  }
 }
 
 const clearCurrPath = (event, el) => {
@@ -29,8 +33,12 @@ const clearCurrPath = (event, el) => {
 }
 
 const moveDraw = (coord, el) => {
-  if (el._internal.currPath !== null) {
-    el._internal.currPath.push([calculateCoordinateFromEvent(coord, el)])
+  if (coord.target == null || coord.target.nodeName === 'CANVAS') {
+    if (el._internal.currPath !== null) {
+      el._internal.currPath.push([calculateCoordinateFromEvent(coord, el)])
+    }
+  } else {
+    return false
   }
 }
 
@@ -63,10 +71,8 @@ component.createComponent('y-demo-drawing', {
      */
     touchstart: (event, el) => {
       if (event.touches.length === 1) {
-        drawStart(event.touches[0], el)
-        event.preventDefault()
+        return drawStart(event.touches[0], el)
       }
-      return false
     },
     mouseleave: clearCurrPath,
     mouseup: clearCurrPath,
