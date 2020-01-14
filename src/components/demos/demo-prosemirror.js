@@ -15,9 +15,9 @@ component.createComponent('y-demo-prosemirror', {
   onStateChange: (state, prevState, component) => {
     if (!state) {
       elements.demoContent.innerHTML = ''
-      if (component.pmView) {
+      if (/** @type {any} */ (component).pmView) {
         setTimeout(() => {
-          component.pmView.destroy()
+          /** @type {any} */ (component).pmView.destroy()
         })
       }
       // todo destroy old state 
