@@ -1,6 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <title>Yjs Shared Editing</title>
+  <meta name="Description" content="A CRDT framework with a powerful abstraction of shared data.">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" type="image/png" href="/images/logo/yjs-120x120.png">
   <script>
     // This is the service worker with the Cache-first network
     if ("serviceWorker" in navigator) {
@@ -17,7 +21,6 @@
 
   </script>
   <link rel="stylesheet" href="./styles/main.css">
-  <link rel="stylesheet" href="./styles/codemirror.css">
   <script type="module" src="./dist/index.js" defer></script>
   <meta name="viewport" content="width=device-width,initial-scale=1">
 </head>
@@ -26,7 +29,7 @@
     A fake / hidden checkbox is used as click reciever,
     so you can use the :checked selector on it.
     -->
-  <input id="hamburger-checkbox" type="checkbox" />
+  <input id="hamburger-checkbox" type="checkbox"/>
   <div id="hamburger-background"></div>
   <div id="hamburger">
     <span></span>

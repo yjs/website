@@ -1,0 +1,21 @@
+{
+  "short_name": "Yjs",
+  "name": "Yjs: Shared Editing",
+  "description": "A CRDT framework with a powerful abstraction of shared data",
+  "icons": [
+    {
+      "src": "/images/logo/yjs-120x120.png",
+      "type": "image/png",
+      "sizes": "120x120"
+    }, {
+      "src": "/images/logo/yjs-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/index.html",
+  "background_color": "#fff",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#ee6352"
+}
