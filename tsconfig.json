@@ -45,7 +45,8 @@
       "y-prosemirror": ["node_modules/y-prosemirror/src/y-prosemirror.js"],
       "y-quill": ["node_modules/y-quill/src/y-quill.js"],
       "y-websocket": ["node_modules/y-websocket/src/y-websocket.js"],
-      "y-webrtc": ["node_modules/y-webrtc/src/y-webrtc.js"]
+      "y-webrtc": ["node_modules/y-webrtc/src/y-webrtc.js"],
+      "y-indexeddb": ["node_modules/y-indexeddb/src/y-indexeddb.js"],
     },                     /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */
     // "rootDirs": [],                        /* List of root folders whose combined content represents the structure of the project at runtime. */
     // "typeRoots": [],                       /* List of folders to include type definitions from. */
