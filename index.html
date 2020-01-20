@@ -5,21 +5,8 @@
   <meta name="Description" content="A CRDT framework with a powerful abstraction of shared data.">
   <link rel="manifest" href="/manifest.webmanifest">
   <link rel="icon" type="image/png" href="/images/logo/yjs-120x120.png">
-  <script>
-    // This is the service worker with the Cache-first network
-    if ("serviceWorker" in navigator) {
-      if (navigator.serviceWorker.controller) {
-        console.log("[PWA Builder] active service worker found, no need to register");
-      } else {
-        // Register the service worker
-        navigator.serviceWorker
-          .register("./service-worker.js", {
-            scope: "./"
-          })
-      }
-    }
-
-  </script>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' wss://*.yjs.dev; img-src *; media-src *; style-src 'self' 'unsafe-inline'; font-src 'self' data:; script-src 'self' 'sha512-s0XTn6LzHFaci2Tk4tdmWR5a2XQMewF60esMgduZ+abOeiv0GJy6h2U2AG4aqk79efGsbVt3DAKlz1m58SboNg==';">
+  <script>if ("serviceWorker" in navigator && !navigator.serviceWorker.controller) { navigator.serviceWorker.register("./service-worker.js", { scope: "./" }) }</script>
   <link rel="stylesheet" href="./styles/main.css">
   <script type="module" src="./dist/index.js" defer></script>
   <meta name="viewport" content="width=device-width,initial-scale=1">
