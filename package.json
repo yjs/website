@@ -6,7 +6,7 @@
   "scripts": {
     "clean": "rm -rf dist service-worker.js*",
     "dist": "rm -rf dist && rollup -c && rollup -c rollup.sw.config.js",
-    "dist:production": "PRODUCTION=1 npm run dist",
+    "dist:production": "npm run clean && PRODUCTION=1 npm run dist",
     "start": "rm -rf dist && concurrently 'rollup -wc' 'http-server -o index.html'"
   },
   "keywords": [
