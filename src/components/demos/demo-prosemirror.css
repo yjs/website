@@ -42,15 +42,18 @@ placeholder:after {
   padding-left: 2px;
   padding-right: 2px;
 }
-[ychange_state] {
+
+[ychange_type] {
   position: relative;
 }
-[ychange_state]:hover::before {
-  content: attr(ychange_user);
-  background-color: #fa8100;
+.ychange-hover {
+  display: none;
+}
+*:hover > .ychange-hover {
+  display: inline;
   position: absolute;
   top: -14px;
-  right: 0;
+  left: 0;
   font-size: 12px;
   padding: 0 2px;
   border-radius: 3px 3px 0 0;
@@ -58,18 +61,20 @@ placeholder:after {
   user-select: none;
   word-break: normal;
 }
-*[ychange_state='added'] {
-  background-color: #fa810069;
-}
-ychange[ychange_state='removed'] {
-  color: rgb(250, 129, 0);
+
+ychange[ychange_type='removed'], p[ychange_type='removed'] {
   text-decoration: line-through;
 }
-*:not(ychange)[ychange_state='removed'] {
-  background-color: #ff9494c9;
-  text-decoration: line-through;
+/*
+p[ychange_type='removed'] > span > br {
+  display: none;
 }
-img[ychange_state='removed'] {
+*/
+*:not(ychange)[ychange_type='removed'] {
+  background-color: #ff5a56;
+  color: inherit !important;
+}
+img[ychange_type='removed'] {
   padding: 2px;
 }
 
