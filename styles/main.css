@@ -272,10 +272,10 @@ nav {
     height: .4rem;
     margin-bottom: .4rem;
     position: relative;
-    
+
     background: var(--background-color);
     border-radius: .3rem;
-    
+
     z-index: 2;
     overflow: hidden;
 
@@ -292,7 +292,7 @@ nav {
     transform-origin: bottom left;
   }
 
-  /* 
+  /*
   * Transform all the slices of hamburger
   * into a crossmark.
   */
@@ -508,6 +508,12 @@ nav > div > ul {
   border: .05rem solid var(--background-color);
   /* transition: transform 60ms; */
 }
+
+/*
+#demo-content .ProseMirror-example-setup-style {
+  max-height: 70vh;
+  overflow-y: auto;
+}*/
 
 #features {
   display: flex;

@@ -5,7 +5,7 @@
   <meta name="Description" content="A CRDT framework with a powerful abstraction of shared data.">
   <link rel="manifest" href="/manifest.webmanifest">
   <link rel="icon" type="image/png" href="/images/logo/yjs-120x120.png">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' wss://*.yjs.dev; img-src * data:; media-src *; style-src 'self' 'unsafe-inline'; font-src 'self' data:; script-src 'self' 'sha512-s0XTn6LzHFaci2Tk4tdmWR5a2XQMewF60esMgduZ+abOeiv0GJy6h2U2AG4aqk79efGsbVt3DAKlz1m58SboNg==';">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' wss://*.yjs.dev wss://y-webrtc-uchplqjsol.now.sh wss://y-webrtc-signaling-eu.herokuapp.com wss://y-webrtc-signaling-us.herokuapp.com; img-src * data:; media-src *; style-src 'self' 'unsafe-inline'; font-src 'self' data:; script-src 'self' 'sha512-s0XTn6LzHFaci2Tk4tdmWR5a2XQMewF60esMgduZ+abOeiv0GJy6h2U2AG4aqk79efGsbVt3DAKlz1m58SboNg==';">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <script>if ("serviceWorker" in navigator && !navigator.serviceWorker.controller) { navigator.serviceWorker.register("./service-worker.js", { scope: "./" }) }</script>
   <link rel="stylesheet" href="./styles/main.css">
@@ -43,7 +43,7 @@
   <main>
     <div id="intro">
       <div id="intro-name">
-        Hello <div class="colorpicker"></div><input hidden type="text"
+        Your name: <div class="colorpicker"></div><input hidden type="text"
         placeholder="Anonymous" maxlength="25" spellcheck="false"/>
       </div>
       <div id="intro-cursors"></div>
@@ -72,13 +72,14 @@ ytext.observe(event => { console.log('The shared text has changed') })
           <h5>Automatic Syncing</h5>
           <p>All interactive elements on this website are built with shared
           types. There are many extensions available for binding shared types to
-          editors like ProseMirror, Quill, or CodeMirror.</p>
+          editors like ProseMirror, Quill, and CodeMirror.</p>
         </div>
         <div class="box-container">
           <h5>Offline Support</h5>
           <p>
-            No waiting for slow connections. Render the information you have and
-            sync later.
+            No waiting for slow connections. The shared data can be stored in a local
+            database (e.g. indexeddb) and will be available right away. Render the
+            information you have and sync later.
           </p>
         </div>
         <div class="box-container">
@@ -86,15 +87,14 @@ ytext.observe(event => { console.log('The shared text has changed') })
           <p>Even if you don't build a peer-to-peer network,
           decentralized systems are faster, easier to scale, and more fault
           tolerant.
-        </p>
+          </p>
         </div>
       </div>
     </div>
     <div id="demos">
       <h2>Demos</h2>
-      <p>This website is a collection of collaborative demos. Try them out
-      on different devices make sure to try them out
-      while offline too. There are many more demos in the <a
+      <p> Open this website in several windows and observe how the content syncs.
+        This website, including the examples, is offline ready and connects to other peers over a peer-to-peer network using <a href="https://github.com/yjs/y-webrtc">y-webrtc</a>. The data is automatically synced when you reconnect to the internet. There are many more demos in the <a
       href="https://github.com/yjs/yjs-demos">yjs-demos</a> repository.</p>
       <y-demos></y-demos>
       <div id="demo-content"></div>

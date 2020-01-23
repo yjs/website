@@ -1,5 +1,5 @@
-import * as component from 'lib0/component.js'
 import * as dcomps from 'd-components'
+import * as component from 'lib0/component.js'
 import * as types from '../sharedTypes.js'
 
 dcomps.defineTab()
