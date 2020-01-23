@@ -9,16 +9,16 @@ const websocketUrl = 'wss://demos.yjs.dev'
 const suffix = '-v2'
 
 export const doc = new Y.Doc()
-// export const websocketProvider = new WebsocketProvider(websocketUrl, 'yjs-website' + suffix, doc)
-export const webrtcProvider = new WebrtcProvider('yjs-website' + suffix, doc)
-export const awareness = webrtcProvider.awareness // websocketProvider.awareness
+export const websocketProvider = new WebsocketProvider(websocketUrl, 'yjs-website' + suffix, doc)
+// export const webrtcProvider = new WebrtcProvider('yjs-website' + suffix, doc)
+export const awareness = websocketProvider.awareness // websocketProvider.awareness
 
 export const indexeddbPersistence = new IndexeddbPersistence('yjs-website' + suffix, doc)
 
 export const prosemirrorDoc = new Y.Doc({ gc: false })
 prosemirrorDoc.clientID = doc.clientID // This is only okay because these documents are virtually the same and must share the same awareness state
-// export const prosemirrorWebsocketProvider = new WebsocketProvider(websocketUrl, 'yjs-website-prosemirror' + suffix, prosemirrorDoc)
-export const prosemirrorWebrtcProvider = new WebrtcProvider('yjs-website-prosemirror' + suffix, prosemirrorDoc)
+export const prosemirrorWebsocketProvider = new WebsocketProvider(websocketUrl, 'yjs-website-prosemirror' + suffix, prosemirrorDoc)
+// export const prosemirrorWebrtcProvider = new WebrtcProvider('yjs-website-prosemirror' + suffix, prosemirrorDoc)
 export const prosemirrorIndexeddbPersistence = new IndexeddbPersistence('yjs-website-prosemirror' + suffix, prosemirrorDoc)
 export const prosemirrorEditorContent = prosemirrorDoc.getXmlFragment('prosemirror')
 
@@ -66,9 +66,9 @@ window.versionDoc = versionDoc
 // @ts-ignore
 window.awareness = awareness
 // @ts-ignore
-window.webrtcProvider = webrtcProvider
+// window.webrtcProvider = webrtcProvider
 // @ts-ignore
-// window.websocketProvider = websocketProvider
+window.websocketProvider = websocketProvider
 // @ts-ignore
 window.indexeddbPersistence = indexeddbPersistence
 // @ts-ignore

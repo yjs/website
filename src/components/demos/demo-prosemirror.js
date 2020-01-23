@@ -88,9 +88,7 @@ component.createComponent('y-demo-prosemirror', {
           yVersions.updateState({ versions: versionType.toArray() })
         }
         versionType.observe(component._internal.versionListener)
-      }
-      const { doc, awareness } = state
-      if (doc && awareness) {
+        // attach editor
         const editorDom = dom.element('div', [pair.create('class', 'demo-prosemirror')])
         clearProsemirrorDemo()
         elements.demoContent.appendChild(editorDom)
@@ -99,7 +97,7 @@ component.createComponent('y-demo-prosemirror', {
             schema,
             plugins: [
               ySyncPlugin(sharedTypes.prosemirrorEditorContent, { permanentUserData: sharedTypes.permanentUserData, colors }),
-              yCursorPlugin(awareness),
+              yCursorPlugin(sharedTypes.awareness),
               yUndoPlugin(),
               keymap({
                 'Mod-z': undo,
@@ -110,6 +108,6 @@ component.createComponent('y-demo-prosemirror', {
           })
         })
       }
-    }
+      }
   }
 })
