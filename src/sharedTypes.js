@@ -2,25 +2,19 @@
 import * as Y from 'yjs'
 import { WebrtcProvider } from 'y-webrtc'
 import { WebsocketProvider } from 'y-websocket'
-import { IndexeddbPersistence } from 'y-indexeddb'
+import { IndexeddbPersistence, storeState } from 'y-indexeddb'
 
 const websocketUrl = 'wss://demos.yjs.dev'
 
-const suffix = '-v2'
+let lastSnapshot = null
 
-export const doc = new Y.Doc()
-export const websocketProvider = new WebsocketProvider(websocketUrl, 'yjs-website' + suffix, doc)
-// export const webrtcProvider = new WebrtcProvider('yjs-website' + suffix, doc)
-export const awareness = websocketProvider.awareness // websocketProvider.awareness
+/**
+ * @param {Y.Item} item
+ * @return {boolean}
+ */
+const gcFilter = item => !Y.isParentOf(prosemirrorEditorContent, item) || (lastSnapshot && (lastSnapshot.sv.get(item.id.client) || 0) <= item.id.clock)
 
-export const indexeddbPersistence = new IndexeddbPersistence('yjs-website' + suffix, doc)
-
-export const prosemirrorDoc = new Y.Doc({ gc: false })
-prosemirrorDoc.clientID = doc.clientID // This is only okay because these documents are virtually the same and must share the same awareness state
-export const prosemirrorWebsocketProvider = new WebsocketProvider(websocketUrl, 'yjs-website-prosemirror' + suffix, prosemirrorDoc)
-// export const prosemirrorWebrtcProvider = new WebrtcProvider('yjs-website-prosemirror' + suffix, prosemirrorDoc)
-export const prosemirrorIndexeddbPersistence = new IndexeddbPersistence('yjs-website-prosemirror' + suffix, prosemirrorDoc)
-export const prosemirrorEditorContent = prosemirrorDoc.getXmlFragment('prosemirror')
+const suffix = '-v3'
 
 export const versionDoc = new Y.Doc()
 // this websocket provider doesn't connect
@@ -28,6 +22,28 @@ export const versionWebsocketProvider = new WebsocketProvider(websocketUrl, 'yjs
 versionWebsocketProvider.connectBc() // only connect via broadcastchannel
 export const versionIndexeddbPersistence = new IndexeddbPersistence('yjs-website-version' + suffix, versionDoc)
 export const versionType = versionDoc.getArray('versions')
+
+export const doc = new Y.Doc({ gcFilter })
+// export const websocketProvider = new WebsocketProvider(websocketUrl, 'yjs-website' + suffix, doc)
+export const webrtcProvider = new WebrtcProvider('yjs-website' + suffix, doc)
+export const awareness = webrtcProvider.awareness // websocketProvider.awareness
+
+export const indexeddbPersistence = new IndexeddbPersistence('yjs-website' + suffix, doc)
+
+export const prosemirrorEditorContent = doc.getXmlFragment('prosemirror')
+
+versionIndexeddbPersistence.on('synced', () => {
+  lastSnapshot = versionType.length > 0 ? Y.decodeSnapshot(versionType.get(0).snapshot) : Y.emptySnapshot
+  versionType.observe(() => {
+    if (versionType.length > 0) {
+      const nextSnapshot = Y.decodeSnapshot(versionType.get(0).snapshot)
+      undoManager.clear()
+      Y.tryGc(nextSnapshot.ds, doc.store, gcFilter)
+      lastSnapshot = nextSnapshot
+      storeState(indexeddbPersistence)
+    }
+  })
+})
 
 class LocalRemoteUserData extends Y.PermanentUserData {
   /**
@@ -46,9 +62,9 @@ class LocalRemoteUserData extends Y.PermanentUserData {
   }
 }
 
-export const permanentUserData = new LocalRemoteUserData(prosemirrorDoc, versionDoc.getMap('users'))
+export const permanentUserData = new LocalRemoteUserData(doc, versionDoc.getMap('users'))
 versionIndexeddbPersistence.whenSynced.then(() => {
-  permanentUserData.setUserMapping(prosemirrorDoc, prosemirrorDoc.clientID, 'local', {})
+  permanentUserData.setUserMapping(doc, doc.clientID, 'local', {})
 })
 
 /**
@@ -59,6 +75,15 @@ versionIndexeddbPersistence.whenSynced.then(() => {
  */
 export const drawingContent = doc.getArray('drawing')
 
+let undoManager = null
+
+export const setUndoManager = nextUndoManager => {
+  if (undoManager) {
+    undoManager.clear()
+  }
+  undoManager = nextUndoManager
+}
+
 // @ts-ignore
 window.ydoc = doc
 // @ts-ignore
@@ -66,12 +91,10 @@ window.versionDoc = versionDoc
 // @ts-ignore
 window.awareness = awareness
 // @ts-ignore
-// window.webrtcProvider = webrtcProvider
+window.webrtcProvider = webrtcProvider
 // @ts-ignore
-window.websocketProvider = websocketProvider
+// window.websocketProvider = websocketProvider
 // @ts-ignore
 window.indexeddbPersistence = indexeddbPersistence
-// @ts-ignore
-window.prosemirrorDoc = prosemirrorDoc
 // @ts-ignore
 window.prosemirrorEditorContent = prosemirrorEditorContent

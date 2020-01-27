@@ -6,7 +6,7 @@ const localImports = process.env.LOCALIMPORTS
 
 
 const customModules = new Set([
-  'y-prosemirror', 'y-websocket'
+  'y-prosemirror', 'y-websocket', 'y-indexeddb'
 ])
 
 /**

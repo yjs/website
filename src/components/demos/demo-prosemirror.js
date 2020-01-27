@@ -7,7 +7,7 @@ import { EditorView } from 'prosemirror-view'
 import { exampleSetup } from 'prosemirror-example-setup'
 import { keymap } from 'prosemirror-keymap'
 
-import { ySyncPlugin, ySyncPluginKey, yCursorPlugin, yUndoPlugin, undo, redo } from 'y-prosemirror'
+import { ySyncPlugin, ySyncPluginKey, yCursorPlugin, yUndoPlugin, yUndoPluginKey, undo, redo } from 'y-prosemirror'
 import { schema } from './demo-prosemirror-schema.js'
 import * as elements from '../../elements.js'
 import { defineVersions } from 'y-webcomponents'
@@ -50,7 +50,7 @@ component.createComponent('y-demo-prosemirror', {
       versions: versionType.toArray(),
       addVersion: () => {
         const prevSnapshot = 0 < versionType.length ? Y.decodeSnapshot(versionType.get(0).snapshot) : Y.emptySnapshot
-        const snapshot = Y.snapshot(sharedTypes.prosemirrorDoc)
+        const snapshot = Y.snapshot(sharedTypes.doc)
         if (!Y.equalSnapshots(prevSnapshot, snapshot)) {
           versionType.insert(0, [{ name: `Version ${versionType.length}`, snapshot: Y.encodeSnapshot(snapshot) }])
         }
@@ -92,7 +92,7 @@ component.createComponent('y-demo-prosemirror', {
         const editorDom = dom.element('div', [pair.create('class', 'demo-prosemirror')])
         clearProsemirrorDemo()
         elements.demoContent.appendChild(editorDom)
-        ;/** @type {any} */ (component).pmView = new EditorView(editorDom, {
+        const editorView = new EditorView(editorDom, {
           state: EditorState.create({
             schema,
             plugins: [
@@ -107,6 +107,9 @@ component.createComponent('y-demo-prosemirror', {
             ].concat(exampleSetup({ schema }))
           })
         })
+        ;/** @type {any} */ (component).pmView = editorView
+        const undoState = yUndoPluginKey.getState(editorView.state)
+        sharedTypes.setUndoManager(undoState.undoManager)
       }
       }
   }

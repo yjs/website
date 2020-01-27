@@ -1,6 +1,7 @@
 import * as component from 'lib0/component.js'
 import * as dom from 'lib0/dom.js'
 import * as pair from 'lib0/pair.js'
+import * as sharedTypes from '../../sharedTypes.js'
 import { QuillBinding } from 'y-quill'
 import Quill from 'quill'
 import QuillCursors from 'quill-cursors'
@@ -65,7 +66,9 @@ component.createComponent('y-demo-quill', {
               placeholder: 'Start collaborating...',
               theme: 'snow' // or 'bubble'
             })
-            ;/** @type {any} */ (component).binding = new QuillBinding(doc.getText('quill-demo'), editor, awareness)
+            const binding = new QuillBinding(doc.getText('quill-demo'), editor, awareness)
+            ;/** @type {any} */ (component).binding = binding
+            sharedTypes.setUndoManager(null)
           }
         }
       }
