@@ -94,7 +94,7 @@ component.createComponent('y-demo-drawing', {
     const shadow = /** @type {any} */ (el.shadowRoot)
     const drawingCanvas = /** @type {HTMLCanvasElement} */ (dom.querySelector(shadow, 'canvas'))
     const drawingMenubarCheckbox = /** @type {HTMLInputElement} */ (dom.querySelector(shadow, '#drawing-menubar-checkbox'))
-    const drawingMenubarColors = dom.querySelector(shadow, '#drawing-menu-colors')
+    const drawingMenubarColors = dom.querySelector(shadow, '#drawing-menubar-colors')
     const drawingMenubarActionColor = /** @type {HTMLElement} */ (dom.querySelector(shadow, '#drawing-menubar-action-color'))
     const drawingMenubarActionClear = /** @type {HTMLElement} */ (dom.querySelector(shadow, '#drawing-menubar-action-clear'))
 
@@ -102,7 +102,7 @@ component.createComponent('y-demo-drawing', {
     el._internal.currPath = null
     el._internal.currentColor = '#333'
     if (el._internal.unregisterYDraw) {
-      el._internal.unregisterYDraw
+      el._internal.unregisterYDraw()
     }
     if (el._internal.unregister) {
       el._internal.unregister()
@@ -216,11 +216,11 @@ component.createComponent('y-demo-drawing', {
     background-image: -webkit-repeating-radial-gradient(center center, rgba(0,0,0,.2), rgba(0,0,0,.2) 1px, transparent 1px, transparent 100%);
     background-size: 1rem 1rem;
   }
-  
+
   #drawing-area {
     position: relative;
   }
-  
+
   #drawing-menubar-checkbox {
     position: absolute;
     right: .5rem;
@@ -231,7 +231,7 @@ component.createComponent('y-demo-drawing', {
     opacity: 0;
     z-index: 3;
   }
-  
+
   #drawing-menubar {
     position: absolute;
     right: .5rem;
@@ -247,7 +247,7 @@ component.createComponent('y-demo-drawing', {
     box-sizing: border-box;
     transition: box-shadow .5s, height .5s, border .2s, border-radius .5s, background-color .2s;
   }
-  
+
   #drawing-menubar-checkbox:checked ~ #drawing-menubar {
     height: calc(3 * var(--drawing-menubar-icon-size));
     box-shadow: inset 0 0 0 0 var(--theme-highlight);
@@ -255,7 +255,7 @@ component.createComponent('y-demo-drawing', {
     border: 0 solid var(--theme-yellow);
     background-color: var(--theme-highlight-complementary);
   }
-  
+
   #drawing-menubar > div {
     height: var(--drawing-menubar-icon-size);
     width: var(--drawing-menubar-icon-size);
@@ -263,37 +263,37 @@ component.createComponent('y-demo-drawing', {
     display: flex;
     transition: background-color .1s;
   }
-  
+
   #drawing-menubar-action-close svg {
     opacity: 0;
   }
-  
+
   #drawing-menubar-checkbox:checked ~ #drawing-menubar > #drawing-menubar-action-close svg {
     opacity: 1;
     transform: rotate(90deg);
     transition: opacity .5s, transform .5s;
     transition-delay: .2s;
   }
-  
+
   #drawing-menubar-action-color {
     background-color: var(--theme-blue)
   }
-  
+
   #drawing-menubar-action-clear {
     background-color: var(--theme-highlight-light)
   }
-  
+
   #drawing-menubar svg {
     fill: var(--background-color);
     margin: auto;
     height: 2rem;
   }
-  
+
   #drawing-menubar-checkbox:not(:checked) ~ #drawing-menubar > div:not(:first-child) {
     background-color: var(--theme-highlight) !important;
     transition: background-color .2s;
   }
-  
+
   #drawing-menubar-colors {
     position: absolute;
     top: calc(1.41 * var(--drawing-menubar-icon-size));
@@ -302,7 +302,7 @@ component.createComponent('y-demo-drawing', {
     justify-content: space-between;
     width: 0;
   }
-  
+
   #drawing-menubar-colors > div {
     border-radius: 50%;
     width: 1.9rem;
@@ -310,18 +310,18 @@ component.createComponent('y-demo-drawing', {
     box-sizing: border-box;
     cursor: pointer;
   }
-  
+
   #drawing-menubar-colors > div:hover {
     transform: scale(1.2);
     transition: all .2s;
   }
-  
+
   #drawing-menubar-checkbox:checked ~ #drawing-menubar-colors {
     width: 10rem;
     transition: width .5s;
     transition-delay: .7s;
   }
-  
+
   #drawer-menubar-colors-black {
     background-color: #333;
   }
@@ -333,6 +333,6 @@ component.createComponent('y-demo-drawing', {
   }
   #drawer-menubar-colors-green {
     background-color: var(--theme-green);
-  }  
+  }
   `
 })
